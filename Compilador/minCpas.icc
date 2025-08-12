@@ -1,0 +1,201 @@
+#
+   Tu afhsahgoiaoow7827502059170##&%&%*^%&(&*(:P"{}-+)&%^TETETHDHDTRTYRJRGR)
+#
+
+%% Esto es un ejemplo de un comentario
+
+constante entera MAX = 10;
+constante decimal deci = 12.0;
+constante alfabetica SALUDO = "Hola";
+variable entera vec[MAX] = { 1, 0, 1, 4, 19, 34, 15, 
+                        2, 100, 10 };
+variable entera i, j, k, facto, tmp, num, res, prueba;
+variable entera fibo, fiba;
+variable logica bPrimo = verdadero, paso;
+variable alfabetica nom = "Juan";
+variable decimal raiz1, raiz2, r1, r2 = 1;
+constante entera ROW = 3;
+constante entera COL = 3;
+
+variable entera matrizA[ROW][COL] = {
+   {23, 46, 21},
+   {56, 78, 32},
+   {10, 78, 39}
+};
+
+variable entera matrizB[ROW][COL] = {
+   {33, 46, 11},
+   {96, 68, 82},
+   {20, 58, 49}
+};
+
+variable entera matrizRes[ROW][COL];
+
+
+funcion decimal raices(decimal a, b, c)
+inicio
+    r1 = (-b + (b^2 - 4*a*c)^(1/2))/(2*a);
+    r2 = (-b - (b^2 - 4*a*c)^(1/2))/(2*a);
+
+    regresa r1;
+fin
+
+funcion OrdVec() 
+inicio
+   %% Ordena Vec
+   desde i=0 hasta i < (MAX-1) incr 1
+   inicio
+      desde j=i+1 hasta j < MAX
+      inicio 
+         si vec[i] > vec[j] hacer
+         inicio
+            tmp = vec[i];
+            vec[i] = vec[j];
+            vec[j] = tmp;
+         fin;
+      fin;
+   fin;
+
+   %% Imprime arreglo ordenado
+   imprime("[");
+   desde i=0 hasta i < MAX 
+   inicio
+     imprime(vec[i], " ");
+   fin;
+   imprimeln("]");
+   %% Fin de Ordena
+fin
+
+funcion logica esPrimo(entera n)
+inicio
+   i = 2;
+   mientras( verdadero ) 
+   inicio
+      si n % i == 0 hacer
+      inicio
+         regresa falso;
+      fin;
+      i = i + 1;
+      si i >= n hacer
+      inicio
+         regresa verdadero;
+      fin;
+   fin;
+fin
+
+funcion entera fibonacci(entera n)
+inicio
+   si (n == 0 o n == 1) hacer
+   inicio
+     regresa n;
+   fin;
+   fiba = 0;
+   fibo = 1;
+   i = 2;
+   si n > 1 hacer
+   inicio
+      repite
+      inicio
+        tmp = fibo;
+        fibo = fiba + fibo;
+        fiba = tmp;
+        i = i + 1;
+      fin
+      hasta que ( i > n );
+   fin;
+   regresa fibo;
+fin
+
+funcion decimal facrec(entera n) 
+inicio
+   si n == 0 o n == 1 hacer
+   inicio
+      regresa n;
+   fin
+   sino 
+   inicio
+      regresa n * facrec(n-1);
+   fin;
+fin
+
+funcion multiplicarMatrices()
+inicio
+   res = 0;
+   k = 0;
+   mientras (k < ROW)
+   inicio
+      desde i=0 hasta i < ROW incr 1
+      inicio
+         desde j=0 hasta j < COL incr 1
+         inicio
+            res = res + matrizA[k][j] * matrizB[j][i];
+            %%imprimeln("Multiplica matrizA[", k, "][", j, "] X matrizB[", j, "][", i, "] = ", res);
+         fin;
+         %%imprimeln("k=", k, " i=", i);
+         matrizRes[k][i] = res;
+         res = 0;
+      fin;
+      k = k + 1;
+   fin;
+fin
+
+funcion imprimirResultado(entera a, f; decimal b, d; alfabetica c, e)
+inicio
+   imprimeln("");
+   imprimeln("[");
+   desde i=0 hasta i < ROW incr 1
+   inicio
+         imprime("   [");
+         desde j=0 hasta j < COL incr 1
+         inicio
+            imprime(matrizRes[i][j], " ");
+         fin;
+         imprimeln("]");
+   fin;
+   imprimeln("]");
+   imprimeln(a, " ", b, " ", c, " ", d, " ", e, " ", f);
+fin
+
+funcion principal() 
+inicio
+   lmp;
+   imprimeln("saludo=", SALUDO, " vec[8]=", vec[8]);
+   imprime("Dame num: ");
+   lee(k);
+   imprimeln("Factorial(", k, ")=", facrec(k));
+   OrdVec();
+   imprimeln("Fibonacci(", k, ")=", fibonacci(k));
+   # Ch
+      eca primo 
+     de un numero entero #
+   imprime("Dame num: ");
+   lee(num);
+   imprime(num);
+
+   #
+   imprimeln("");
+   imprimeln(raices(1, -5, 6));
+   #
+   
+   si esPrimo(num) hacer
+   inicio
+      imprimeln(" es numero PRIMO");
+   fin
+   sino 
+   inicio
+      imprimeln(" NO es numero PRIMO");
+   fin;
+   j = k * num;
+   imprimeln(num, "*", k, "=", j );
+   imprime("Como te llamas ? ");
+   lee(nom);
+   imprimeln("Felicidades ", nom, " ya PASASTE Compiladores");
+
+   imprimeln("La multiplicacion de la MatrizA * matrizB :");
+   multiplicarMatrices();
+   imprimirResultado(1, 2, 3, 4 * 2/1, "5", "6");
+fin
+
+
+%%Ejemplo de comentario. 
+%%&&&&&&&&^*$%!!@$$$$@@@@@"podpqokfsdlkhjs&*^$#@##%~```"
