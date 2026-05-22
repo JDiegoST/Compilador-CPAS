@@ -1,5 +1,7 @@
 package com.cpas.compilador.Sintaxis.Estructuras.comandos.bucles;
 
+import java.util.Stack;
+
 import com.cpas.compilador.Semantico.Eventos.EventosSemanticos;
 import com.cpas.compilador.Sintaxis.Estructuras.AbstracSintaxis;
 import com.cpas.compilador.Sintaxis.Estructuras.comandos.Comandos;
@@ -9,7 +11,7 @@ public class Bucles extends AbstracSintaxis {
     private final Comandos com;
 
     private boolean dentroBucle;
-
+    private Stack<String> stackInterrumpeAnidado = new Stack<String>();
     private String direccionInterrumpe;
     private String direccionContinua;
     private int contadorBucleAnidado;
@@ -26,7 +28,7 @@ public class Bucles extends AbstracSintaxis {
         this.contadorBucleAnidado++;
 
         String etiX = this.six.genIdEtiqueta();
-        this.direccionInterrumpe = etiX;
+        this.stackInterrumpeAnidado.add(etiX);
 
         String etiCont = this.six.genIdEtiqueta();
 
@@ -107,7 +109,7 @@ public class Bucles extends AbstracSintaxis {
         this.sem.consumir(new EventosSemanticos.ComprobadorTipoCondicionales("Bucle"));
         this.gen.insertCodPL0(new String[] { "JMC", "F", Integer.toString(dirInicioBucle) });
         
-        this.direccionInterrumpe = Integer.toString(this.gen.getContPrograma());
+        this.stackInterrumpeAnidado.add(Integer.toString(this.gen.getContPrograma()));
 
         this.contadorBucleAnidado--;
         if (this.contadorBucleAnidado == 0)
@@ -119,7 +121,7 @@ public class Bucles extends AbstracSintaxis {
         this.contadorBucleAnidado++;
 
         String etiX = this.six.genIdEtiqueta();
-        this.direccionInterrumpe = etiX;
+        this.stackInterrumpeAnidado.add(etiX);
     
         avanzarToken();
         int dirInicioBucle = this.gen.getContPrograma();
@@ -150,8 +152,7 @@ public class Bucles extends AbstracSintaxis {
         }
         avanzarToken();
 
-        this.gen.insertCodPL0(new String[] { "JMP", "0", this.direccionInterrumpe });
-        this.direccionInterrumpe = "";
+        this.gen.insertCodPL0(new String[] { "JMP", "0", this.stackInterrumpeAnidado.pop() });
     }
 
     public void continua() {

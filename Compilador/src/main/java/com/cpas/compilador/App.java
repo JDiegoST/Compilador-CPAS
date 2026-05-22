@@ -29,6 +29,9 @@ public class App {
                 System.out.print("Archivo a compilar (*.icc) [.] =salir: ");
                 this.archivoE = in.nextLine();
 
+                // System.out.println(this.archivoE);
+                // System.out.println("Buscando en: " + new java.io.File(".").getAbsolutePath());
+                
                 if (this.archivoE.equals("."))
                     System.exit(0);
 
