@@ -11,8 +11,7 @@ public class Bucles extends AbstracSintaxis {
     private final Comandos com;
 
     private boolean dentroBucle;
-    private Stack<String> stackInterrumpeAnidado = new Stack<String>();
-    private String direccionInterrumpe;
+    private final Stack<String> stackInterrumpeAnidado = new Stack<>();
     private String direccionContinua;
     private int contadorBucleAnidado;
     
